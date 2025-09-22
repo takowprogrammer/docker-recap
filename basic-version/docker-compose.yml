@@ -1,14 +1,12 @@
 version: '3.3'
 services:
   webapp.student_list:
-    image: php:apache
+    image: webapp-pozos:1
     container_name: webapp_student_list
     depends_on:
       - pozos_api
     ports:
       - "80:80"
-    volumes:
-      - ./website/:/var/www/html
     environment:
       - USERNAME=toto
       - PASSWORD=python
@@ -18,6 +16,8 @@ services:
   pozos_api:
     image: api-pozos:1
     container_name: api_pozos
+    ports:
+      - "5000:5000"
     volumes:
       - './simple_api/:/data/'
     networks:

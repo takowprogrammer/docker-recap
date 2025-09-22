@@ -1,7 +1,7 @@
-ARG VERSION="3.8-buster"
+ARG VERSION="3.8-slim"
 FROM python:$VERSION
 LABEL maintainer="datascientest" email="contact@datascientest.fr"
-RUN apt update -y && apt install python3-dev libsasl2-dev libldap2-dev libssl-dev -y
+RUN apt update -y && apt install python3-dev libsasl2-dev libldap2-dev libssl-dev gcc -y
 COPY requirements.txt student_age.py /
 RUN pip3 install -r /requirements.txt
 VOLUME /data
