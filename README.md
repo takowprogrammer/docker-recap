@@ -21,12 +21,12 @@ Point-Recap-Docker-Devops/
 
 ## 🎯 Demonstration Flow
 
-### Phase 1: Basic Version (10 minutes)
+### Phase 1: Basic Version 
 - **What**: Simple containerization with basic networking
 - **Concepts**: Docker basics, volumes, simple orchestration
 - **Limitations**: Single environment, no health checks, basic security
 
-### Phase 2: Advanced Version (20 minutes)
+### Phase 2: Advanced Version 
 - **What**: Production-ready containerized application
 - **Concepts**: Multi-stage builds, health checks, secrets, database integration
 - **Features**: Environment management, monitoring, security best practices
@@ -88,4 +88,3 @@ This project is designed to show:
 3. **Real-world**: Actual enterprise scenarios
 4. **Hands-on**: Interactive learning experience
 
-Perfect for Docker training, workshops, and demonstrating containerization concepts!
