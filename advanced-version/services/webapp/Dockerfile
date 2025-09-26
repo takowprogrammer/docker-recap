@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy composer files
-COPY composer.json composer.lock ./
+COPY composer.json ./
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
@@ -22,7 +22,7 @@ FROM php:8.4-apache
 
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y \
-    libzip4 \
+    libzip-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache modules

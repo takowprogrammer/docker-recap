@@ -22,13 +22,16 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Production stage
-FROM python:${VERSION}-slim
+FROM python:${VERSION}
 
 # Install runtime dependencies only
 RUN apt-get update && apt-get install -y \
-    libsasl2-2 \
-    libldap-2.4-2 \
-    libssl1.1 \
+    libldap-2.5-0 \
+    libssl3 \
+    curl \
+    #libsasl2-2 \
+    #libldap-2.4-2 \
+    #libssl1.1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy virtual environment from builder

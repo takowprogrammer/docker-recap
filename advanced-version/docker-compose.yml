@@ -29,7 +29,7 @@ services:
     container_name: student_api
     environment:
       - DATABASE_URL=${DATABASE_URL:-postgresql://student_user:student_pass@database:5432/student_db}
-      - API_USERNAME=${API_USERNAME:-toto}
+      - API_USERNAME=${API_USERNAME:-john123}
       - API_PASSWORD=${API_PASSWORD:-python}
       - DEBUG=${DEBUG:-false}
       - APP_VERSION=${APP_VERSION:-2.0.0}
@@ -55,7 +55,7 @@ services:
     container_name: student_webapp
     environment:
       - API_URL=${API_URL:-http://api:5000}
-      - API_USERNAME=${API_USERNAME:-toto}
+      - API_USERNAME=${API_USERNAME:-john123}
       - API_PASSWORD=${API_PASSWORD:-python}
       - DEBUG=${DEBUG:-false}
       - APP_VERSION=${APP_VERSION:-2.0.0}
@@ -98,7 +98,7 @@ services:
     image: registry:2
     container_name: student_registry
     ports:
-      - "5000:5000"
+      - "5001:5001"
     environment:
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry
     volumes:
@@ -115,7 +115,7 @@ services:
     ports:
       - "8081:80"
     environment:
-      REGISTRY_URL: http://registry:5000
+      REGISTRY_URL: http://registry:5001
       REGISTRY_NAME: Student Management Registry
     depends_on:
       - registry
