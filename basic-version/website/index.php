@@ -17,16 +17,14 @@
             <?php
               if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['submit']))
               {
-              $username = getenv('USERNAME');
-              $password = getenv('PASSWORD');
-              if ( empty($username) ) $username = 'fake_username';
-              if ( empty($password) ) $password = 'fake_password';
+              $username = 'john123';
+              $password = 'python';
               $context = stream_context_create(array(
                 "http" => array(
                 "header" => "Authorization: Basic " . base64_encode("$username:$password"),
               )));
 
-              $url = 'http://api_pozos:5000/pozos/api/v1.0/get_student_ages';
+              $url = 'http://localhost:5000/pozos/api/v1.0/get_student_ages';
               $list = json_decode(file_get_contents($url, false, $context), true);
               echo "<p style='color:red;; font-size: 20px;'>This is the list of the student with age</p>";
               foreach($list["student_ages"] as $key => $value) {

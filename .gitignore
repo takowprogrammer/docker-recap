@@ -1,11 +1,12 @@
 # Technical Documentation (excluded from repository)
 TECHNICAL_DEPLOYMENT_GUIDE.md
+GUIDE.md
 
 # Docker
 .dockerignore
 
 # Environment files
-.env
+#.env
 .env.local
 .env.*.local
 
