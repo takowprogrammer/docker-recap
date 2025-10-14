@@ -564,6 +564,62 @@ docker-compose ps
 # webapp_student_list  apache2-foreground             Up      0.0.0.0:80->80/tcp
 
 # Check logs
+
+### **Part 9: Working with Local Docker Registry**
+
+A local Docker registry allows you to store and manage your Docker images privately within your network. This is useful for development teams working on the same project or for deploying to environments without internet access.
+
+**1. Tagging Images for the Local Registry**
+
+Before pushing an image to your local registry, you need to tag it with the registry's address:
+
+```bash
+# Format: docker tag [image_name]:[tag] [registry_address]:[port]/[image_name]:[tag]
+docker tag my-api:latest localhost:5000/my-api:latest
+```
+
+**2. Pushing Images to the Local Registry**
+
+Once tagged, you can push the image to your local registry:
+
+```bash
+# Format: docker push [registry_address]:[port]/[image_name]:[tag]
+docker push localhost:5000/my-api:latest
+```
+
+**3. Pulling Images from the Local Registry**
+
+To pull an image from your local registry:
+
+```bash
+# Format: docker pull [registry_address]:[port]/[image_name]:[tag]
+docker pull localhost:5000/my-api:latest
+```
+
+**4. Listing Images in the Local Registry**
+
+To list all images in your local registry, you can use the Docker Registry HTTP API:
+
+```bash
+# Using curl to list repositories
+curl -X GET http://localhost:5000/v2/_catalog
+
+# To list tags for a specific repository
+curl -X GET http://localhost:5000/v2/my-api/tags/list
+```
+
+**5. Using Images from the Local Registry in Docker Compose**
+
+In your docker-compose.yml file, reference images from your local registry:
+
+```yaml
+services:
+  api:
+    image: localhost:5000/my-api:latest
+    # other configuration...
+```
+
+> **Note:** If your registry uses HTTPS with a self-signed certificate, you may need to configure Docker to trust it or use the `--insecure-registry` flag.
 docker-compose logs -f
 ```
 
@@ -814,7 +870,41 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 docker-compose ps
 
 # Monitor resource usage
-docker stats
+### **Part 8: Cleaning Up Docker Resources**
+
+Over time, Docker can accumulate a large number of unused images, containers, volumes, and networks, which can consume a significant amount of disk space. It's important to periodically clean up these resources.
+
+**1. Prune the Docker System**
+
+This command is the most effective way to reclaim disk space. It will remove all stopped containers, all networks not used by at least one container, all dangling images, and all build cache.
+
+```bash
+docker system prune
+```
+
+To remove all unused images (not just dangling ones), you can add the `-a` flag:
+
+```bash
+docker system prune -a
+```
+
+**2. Prune Docker Volumes**
+
+By default, the `docker system prune` command does not remove unused volumes. To delete all unused volumes, run the following command:
+
+```bash
+docker volume prune
+```
+
+**3. Combining Commands**
+
+For a complete cleanup, you can run these commands together:
+
+```bash
+docker system prune -a -f && docker volume prune -f
+```
+
+> **Warning:** These commands will permanently delete data. Be sure you do not have any stopped containers or unused volumes that you want to keep before running them.
 
 # Check logs
 docker-compose logs -f --tail=100
