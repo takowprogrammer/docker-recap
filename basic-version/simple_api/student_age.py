@@ -9,6 +9,9 @@ from flask import g, session, redirect, url_for
 # from flask_simpleldap import LDAP  # Not used in this implementation
 import json
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 auth = HTTPBasicAuth()
 app = Flask(__name__)

@@ -1,7 +1,10 @@
-version: '3.3'
+#version: '3.3'
 services:
   webapp.student_list:
-    image: webapp-pozos:1
+    #image: webapp-pozos:1
+    build: 
+      context: ./website
+      dockerfile: Dockerfile
     container_name: webapp_student_list
     depends_on:
       - pozos_api
@@ -14,7 +17,10 @@ services:
       - pozos_network
 
   pozos_api:
-    image: api-pozos:1
+    #image: api-pozos:1
+    build: 
+      context: ./simple_api
+      dockerfile: Dockerfile
     container_name: api_pozos
     ports:
       - "5000:5000"

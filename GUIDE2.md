@@ -58,7 +58,7 @@ The API is a simple Flask application that provides student data from a JSON fil
     *   **For Windows (Command Prompt):**
         Open a Command Prompt, navigate to the `simple_api` directory, and run these commands:
         ```bash
-        set student_age_file_path=c:\Users\Takow Carvin\Documents\GitHub\Point-Recap-Docker-Devops\basic-version\simple_api\student_age.json
+        set student_age_file_path=c:\Users\G1 TECH\Documents\GitHub\Point-Recap-Docker-Devops\basic-version\simple_api\student_age.json
         python student_age.py
         ```
     *   **For Windows (PowerShell):**
@@ -78,7 +78,7 @@ The API is a simple Flask application that provides student data from a JSON fil
     The API should now be running at `http://127.0.0.1:5000`. You can test it using a tool like `curl` or a web browser. You'll need to provide the username `toto` and password `python` for authentication.
 
     ```bash
-    curl -u toto:python http://127.0.0.1:5000/pozos/api/v1.0/get_student_ages
+    curl -u john123:python http://127.0.0.1:5000/pozos/api/v1.0/get_student_ages
     ```
 
 ### 1.2. Running the Website (`website`)
@@ -331,19 +331,19 @@ For sensitive information like passwords, the production environment uses Docker
 
     *   **For Windows (Command Prompt):**
         ```bash
-        echo your_secure_password > configs\secrets\postgres_password
-        echo your_api_username > configs\secrets\api_username
-        echo your_api_password > configs\secrets\api_password
+        echo password > configs\secrets\postgres_password
+        echo username > configs\secrets\api_username
+        echo password > configs\secrets\api_password
         ```
     *   **For Windows (PowerShell):**
         ```bash
-        "your_secure_password" | Out-File -FilePath configs\secrets\postgres_password -Encoding ascii
-        "your_api_username" | Out-File -FilePath configs\secrets\api_username -Encoding ascii
-        "your_api_password" | Out-File -FilePath configs\secrets\api_password -Encoding ascii
+        "password" | Out-File -FilePath configs\secrets\postgres_password -Encoding ascii
+        "username" | Out-File -FilePath configs\secrets\api_username -Encoding ascii
+        "password" | Out-File -FilePath configs\secrets\api_password -Encoding ascii
         ```
     *   **For macOS/Linux:**
         ```bash
-        echo "your_secure_password" > configs/secrets/postgres_password
+        echo "password" > configs/secrets/postgres_password
         echo "your_api_username" > configs/secrets/api_username
         echo "your_api_password" > configs/secrets/api_password
         ```
